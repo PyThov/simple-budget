@@ -30,53 +30,95 @@
  - Paths:
     - `/budget`
         - `GET`
-            - Gets the budget data for the specified category in the specified month
-            - Request: `/budget?category={category}&month={month}`
-            - Query Parameters:
-                - Required
-                    - `category`: ie: `"income"`
-                    - `month`:    ie: `1` (1=january)
+            - Gets the budget data for the specified category in the specified month and year
+            - Request: `/budget?category={category}&month={month}&year={year}`
+                - Query Parameters:
+                    - Required
+                        - `category`: ie: `"income"`
+                        - `month`:    ie: `1` (1=january)
+                        - `year`:     ie: `2023`
+            - Response:
+                - Headers:
+                    ```json
+                        {
+                            "Content-Type": "application/json"
+                        }
+                    ```
+                - Body
+                    ```json
+                        {
+                            "category": "string",
+                            "month": "integer",
+                            "year": "integer",
+                            "monthlyValue": "float",
+                            "yearlyValue": "float",
+                            "sources": [
+                                {
+                                    "string": "float",
+                                },
+                            ],
+                            "taxRate": "float", // Optional
+                            "emgFund": "float", // Optional
+                        }
+                    ```
     - `/source`
         - `POST`
             - Creates a new source for the given category and month (if applicable)
             - Request: `/source`
-            - Headers:
-                ```json
-                    {
-                        "Content-Type": "application/json"
-                    }
-                ```
-            - Body:
-                ```json
-                    {
-                        "category": "string",
-                        "month": "string", // Only required for `Income`
-                        "source": "string",
-                        "value": "string"
-                    }
-                ```
+                - Headers:
+                    ```json
+                        {
+                            "Content-Type": "application/json"
+                        }
+                    ```
+                - Body:
+                    ```json
+                        {
+                            "category": "string",
+                            "month": "string",
+                            "year": "string",
+                            "source": "string",
+                            "value": "string"
+                        }
+                    ```
+            - Response:
+                - Success: `200`
         - `PUT`
             - Updates a source for the given category and month (if applicable)
             - Request: `/source`
-            - Headers:
-                ```json
-                    {
-                        "Content-Type": "application/json"
-                    }
-                ```
-            - Body:
-                ```json
-                    {
-                        "category": "string",
-                        "month": "string", // Only required for `Income`
-                        "source": "string",
-                        "value": "string"
-                    }
-                ```
+                - Headers:
+                    ```json
+                        {
+                            "Content-Type": "application/json"
+                        }
+                    ```
+                - Body:
+                    ```json
+                        {
+                            "category": "string",
+                            "month": "string",
+                            "year": "string",
+                            "source": "string",
+                            "value": "string"
+                        }
+                    ```
+            - Response:
+                - Success: `200`
         - `DELETE`
             - Deletes a source for the given category and month (if applicable)
             - Request: `/source?category={category}&month={month}`
+            - Response:
+                - Success: `200`
     - `/aggregated`
         - `GET`
             - Gets the aggregated budget data for graph display
             - Request: `/aggregated`
+            - Response:
+                - Headers:
+                    ```json
+                        {
+                            "Content-Type": "application/json"
+                        }
+                    ```
+                - Body:
+                    - **TBD**
