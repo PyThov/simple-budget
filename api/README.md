@@ -1,5 +1,11 @@
 # BACKEND - API
 
+## Tools
+ - Python
+ - FastAPI
+ - SQLAlchemy (PostgreSQL)
+    - Follows ORM as described by SQLAlchemy documentation: https://docs.sqlalchemy.org/en/14/orm/quickstart.html
+
 ## Terminology
  - Source
     - A Source refers to an item in a given category. For example, a 'source' in the 'Income' category would be money being made from a job, counting towards income.
