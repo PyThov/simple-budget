@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "simple-budget-backend"
+version = "0.1.0"
+description = "The Simple-Budget backend"
+authors = ["PyThov <noahthovson@gmail.com>"]
+readme = "README.md"
+packages = [{include = "backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+sqlalchemy = "^1.4.46"
+psycopg2 = "^2.9.5"
+fastapi = "^0.89.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
