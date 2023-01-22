@@ -63,8 +63,8 @@
                                     "string": "float",
                                 },
                             ],
-                            "taxRate": "float", // Optional
-                            "emgFund": "float", // Optional
+                            "taxRate": "float", // Optional, used for 'Income'
+                            "emgFund": "float", // Optional, used for 'Savings'
                         }
                     ```
     - `/source`
@@ -81,10 +81,10 @@
                     ```json
                         {
                             "category": "string",
-                            "month": "string",
-                            "year": "string",
+                            "month": "integer",
+                            "year": "integer",
                             "source": "string",
-                            "value": "string"
+                            "value": "float"
                         }
                     ```
             - Response:
@@ -112,13 +112,13 @@
                 - Success: `200`
         - `DELETE`
             - Deletes a source for the given category and month (if applicable)
-            - Request: `/source?category={category}&month={month}`
+            - Request: `/source?category={category}&month={month}&source={source}`
             - Response:
                 - Success: `200`
     - `/aggregated`
         - `GET`
             - Gets the aggregated budget data for graph display
-            - Request: `/aggregated`
+            - Request: `/aggregated?year={year}`
             - Response:
                 - Headers:
                     ```json
