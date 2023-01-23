@@ -1,13 +1,14 @@
 services:
-  # web:
-  #   build: .
-  #   ports:
-  #     - "80:8000"
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
-  #   command: ["python", "main.py"]
- 
+  simple_budget_backend:
+    container_name: simple_backend
+    image: python-simple-budget
+    build:
+      context: ./backend/
+      dockerfile: ./backend/Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+
   db:
     container_name: simple_psql
     image: postgres

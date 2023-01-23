@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
-from backend.db.db_main import Base
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Users(Base):
     __tablename__ = "users"
@@ -44,7 +46,7 @@ class Expenses(Base):
     users = relationship("Users", back_populates="expenses")
 
     def __repr__(self) -> str:
-        return f"Expenses(id={self.id!r})"
+        return f"Expenses(id={self.id!r}, user_id={self.user_id!r}, source={self.source!r}, value={self.value!r}, year={self.year!r}, month={self.month!r})"
 
 class Savings(Base):
     __tablename__ = "savings"
@@ -60,7 +62,7 @@ class Savings(Base):
     users = relationship("Users", back_populates="savings")
 
     def __repr__(self) -> str:
-        return f"Savings(id={self.id!r})"
+        return f"Savings(id={self.id!r}, user_id={self.user_id!r}, source={self.source!r}, value={self.value!r}, year={self.year!r}, month={self.month!r}, emg_savings={self.emg_savings!r})"
 
 class Recreational(Base):
     __tablename__ = "recreational"
@@ -75,4 +77,4 @@ class Recreational(Base):
     users = relationship("Users", back_populates="recreational")
 
     def __repr__(self) -> str:
-        return f"Recreational(id={self.id!r})"
+        return f"Recreational(id={self.id!r}, user_id={self.user_id!r}, source={self.source!r}, value={self.value!r}, year={self.year!r}, month={self.month!r})"

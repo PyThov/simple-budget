@@ -1,16 +1,24 @@
 from pydantic import BaseModel
 
 # Common fields reused in models
-class CommonFields(BaseModel):
+class _CommonFields(BaseModel):
     category: str # One of: [income, expenses, savings, recreational]
     month: int
     year: int
+
+# Users
+class User(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
 
 class BudgetSource(BaseModel):
     source: float
 
 # /budget - Responses
-class Budget(CommonFields):
+class Budget(_CommonFields):
     monthlyValue: float
     yearlyValue: float
     sources: list[BudgetSource]
@@ -20,13 +28,16 @@ class Budget(CommonFields):
     class Config:
         orm_mode = True
 
-class BudgetRequest(CommonFields):
+class BudgetRequest(_CommonFields):
     pass
 
 # /source - Requests
-class Source(CommonFields):
+class Source(_CommonFields):
     source: str
     value: float
+    
+    class Config:
+        orm_mode = True
 
 # /aggregated - Response
 # TODO: This data structure will be determined base on what is needed

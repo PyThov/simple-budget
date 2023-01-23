@@ -1,16 +1,17 @@
 [tool.poetry]
-name = "simple-budget-backend"
+name = "simple-budget"
 version = "0.1.0"
-description = "The Simple-Budget backend"
+description = "The simple budget API and database"
 authors = ["PyThov <noahthovson@gmail.com>"]
 readme = "README.md"
-packages = [{include = "backend"}]
+packages = [{include = "simple_budget"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 sqlalchemy = "^1.4.46"
-psycopg2 = "^2.9.5"
 fastapi = "^0.89.1"
+psycopg2-binary = "^2.9.5"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
 
 
 [build-system]
