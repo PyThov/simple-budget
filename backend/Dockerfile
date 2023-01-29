@@ -19,5 +19,5 @@ RUN curl -sSL https://install.python-poetry.org | python3 - \
 
 WORKDIR /app/simple_budget
 
-CMD [ "poetry", "run", "uvicorn", "main:app" , "--reload"]
+CMD [ "poetry", "run", "uvicorn", "main:app" , "--host", "0.0.0.0", "--port", "8001"]
 # CMD [ "/bin/ash" ]

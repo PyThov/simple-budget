@@ -17,7 +17,7 @@ def get_db():
 
 @app.get(f"{API_PREFIX}/budget")
 def get_budget(category: str, month: int, year: int, db: Session = Depends(get_db)) -> api_models.Budget:
-    match category:
+    match category.lower():
         case "income":
             db_result = crud.get_income(db, USER_ID, year)
         case "expenses":
@@ -34,11 +34,11 @@ def get_budget(category: str, month: int, year: int, db: Session = Depends(get_d
     return db_result
 
 @app.post(f"{API_PREFIX}/source")
-def create_source():
+def create_source(category: str, month: int, source: str):
     return {"message": "Hello from Simple Budget!"}
 
 @app.put(f"{API_PREFIX}/source")
-def update_source():
+def update_source(category: str, month: int, source: str):
     return {"message": "Hello from Simple Budget!"}
 
 @app.delete(f"{API_PREFIX}/source")

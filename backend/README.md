@@ -155,4 +155,5 @@
       - Create `add` functions for each table
  - Continue API functions
    - Setup `get_budget` function for accessing database
+ - Configure Docker and test host communication
       
